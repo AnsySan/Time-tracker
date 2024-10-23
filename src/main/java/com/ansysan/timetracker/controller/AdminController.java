@@ -56,7 +56,7 @@ public class AdminController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/set/user/{id}")
     @Operation(
-            summary = "Set the journalist role for the user",
+            summary = "Set the user role for the user",
             description = "Update the user role by specifying its id. The response is a message about the successful changed a role",
             tags = "post"
     )
@@ -65,8 +65,8 @@ public class AdminController {
             @ApiResponse(responseCode = "403"),
             @ApiResponse(responseCode = "404"),
             @ApiResponse(responseCode = "500")})
-    public ResponseEntity<?> setJournalist(@PathVariable("id") @Min(1) Long id) {
-        log.info("Set journalist role for the user");
+    public ResponseEntity<?> setUser(@PathVariable("id") @Min(1) Long id) {
+        log.info("Set user role for the user");
         adminService.setUser(id);
         return ResponseEntity.ok(new MessageResponse("User role Admin"));
     }
